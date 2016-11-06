@@ -1,27 +1,26 @@
-# Angular2 Materialize
+# Angular1 Materialize
 
-[![travis build](https://img.shields.io/travis/InfomediaLtd/angular2-materialize.svg?style=flat-square)](https://travis-ci.org/InfomediaLtd/angular2-materialize)
-[![version](https://img.shields.io/npm/v/angular2-materialize.svg?style=flat-square)](https://www.npmjs.com/package/angular2-materialize)
-[![downloads](https://img.shields.io/npm/dm/angular2-materialize.svg?style=flat-square)](https://www.npmjs.com/package/angular2-materialize)
-[![MIT Licence](https://img.shields.io/npm/l/angular2-materialize.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
-[![PRs Welcome](https://img.shields.io/badge/prs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+This is a port of the Angular2 Materialize directive (https://github.com/InfomediaLtd/angular2-materialize) to Angular 1. 
+This is a lightweight solution to bringing Material Design to your angular 1 app without the performance nightmare that is the official angular-material library
+It started out as a fork of the Angular2 Materialize repo and I am in the process of convenrting the source code and examples across to Angular 1.
+Please bear with me. At the moment I am still in the search and replace phase. The serious work is just beginning.  
 
-Angular 2 support for Materialize CSS framework [https://github.com/Dogfalo/materialize](https://github.com/Dogfalo/materialize)
+This library provides Angular 1 support for Materialize CSS framework [https://github.com/Dogfalo/materialize](https://github.com/Dogfalo/materialize)
 
-This library adds support for the Materialize CSS framework in Angular 2. It is needed to add the dynamic behavior of Materialize CSS that is using JavaScript rather than plain CSS.
+This library adds support for the Materialize CSS framework in Angular 1. It is needed to add the dynamic behavior of Materialize CSS that is using JavaScript rather than plain CSS.
 
 View minimal demo here: [http://angular2-materialize.surge.sh](http://angular2-materialize.surge.sh/)
 
 To use the library you need to import it once per project and then use its MaterializeDirective directive for binding it to any component that needs a dynamic behavior, like collapsible panels, tooltips, etc.
 
-#### Using angular2-materialize
+NOT READY TO USE YET
 
-Import both materialize-css and angular2-materialize once per project, for example in your main.ts:
+#### Using angular1-materialize
+
+Import both materialize-css and angular1-materialize once per project, for example in your main.ts:
 ```js
 import "materialize-css";
-import "angular2-materialize";
+import "angular1-materialize";
 ```
 
 Add the Google MD fonts to your index.html:
@@ -29,9 +28,9 @@ Add the Google MD fonts to your index.html:
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 
-Add the MaterializeDirective to your NgModule:
+Add the MaterializeDirective to your index.html:
 ```js
-import {MaterializeDirective} from "angular2-materialize";
+import {MaterializeDirective} from "angular1-materialize";
 
 @NgModule({
   declarations: [
@@ -64,7 +63,7 @@ In your component, use it for dynamic behavior. For example, for collapsible pan
 
 ```
 
-Apply an empty [MaterializeDirective](https://github.com/InfomediaLtd/angular2-materialize/blob/master/src/materialize-directive.ts) attribute directive for top level components, like forms:
+Apply an empty [MaterializeDirective](https://github.com/InfomediaLtd/angular1-materialize/blob/master/src/materialize-directive.ts) attribute directive for top level components, like forms:
 ```html
 <form materialize class="col s12">
   <div class="row">
@@ -76,14 +75,14 @@ Apply an empty [MaterializeDirective](https://github.com/InfomediaLtd/angular2-m
 </form>
 ```
 
-The [MaterializeDirective](https://github.com/InfomediaLtd/angular2-materialize/blob/master/src/materialize-directive.ts) attribute directive (**materialize**) accepts any MaterializeCSS initialization call to apply to the element. The list of supported functions are provided by MaterializeCSS. Examples: collapsible, modal, tooltip, dropdown, tabs, material_select, sideNav, etc.
+The [MaterializeDirective](https://github.com/InfomediaLtd/angular1-materialize/blob/master/src/materialize-directive.ts) attribute directive (**materialize**) accepts any MaterializeCSS initialization call to apply to the element. The list of supported functions are provided by MaterializeCSS. Examples: collapsible, modal, tooltip, dropdown, tabs, material_select, sideNav, etc.
 
 For example, to apply tooltip:
 ```html
 <a materialize="tooltip" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">Hover me!</a>
 ```
 
-The [Materialize](https://github.com/InfomediaLtd/angular2-materialize/blob/master/src/materialize.ts) attribute directive also allows specifying parameters to be passed to the function, but providing a **materializeParams** attribute returning an array of params. Use it with a function call or even by inlining the params in the HTML.
+The [Materialize](https://github.com/InfomediaLtd/angular1-materialize/blob/master/src/materialize.ts) attribute directive also allows specifying parameters to be passed to the function, but providing a **materializeParams** attribute returning an array of params. Use it with a function call or even by inlining the params in the HTML.
 
 Another useful option is emitting actions on an element. You may want to do that for calling Materialize functions, like closing a modal dialog or triggering a toast. You can do that by setting the **materializeActions** attribute, which accepts an [EventEmitter](https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html). The emitted events can either be a "string" type action (Materialize function call) or a structure with action and parameters:
 
@@ -105,7 +104,7 @@ The example below shows how you'd create a modal dialog and use the actions to o
 </div>
 ```
 ```js
-  import {MaterializeAction} from 'angular2-materialize';
+  import {MaterializeAction} from 'angular1-materialize';
   //...
   modalActions = new EventEmitter<string|MaterializeAction>();
   openModal() {
@@ -123,12 +122,12 @@ For dynamic select elements apply the **materializeSelectOptions** directive to 
 </select>
 ```
 
-#### Installing and configuring angular2-materialize with webpack
+#### Installing and configuring angular1-materialize with webpack
 
-Install MaterializeCSS and angular2-materialize from npm
+Install MaterializeCSS and angular1-materialize from npm
 ```sh
 npm install materialize-css --save
-npm install angular2-materialize --save
+npm install angular1-materialize --save
 ```
 
 MaterializeCSS required jQuery and HammerJS. Check the exact version materialize-css is compatible with:
@@ -172,14 +171,14 @@ Another thing you would need to confirm is being able to load web fonts properly
 ```
 Notice that the url loader is required for this to work.
 
-The following example project is a fork of the angular2-webpack-starter with the addition of angular2-materialize: [InfomediaLtd/angular2-webpack-starter](https://github.com/InfomediaLtd/angular2-webpack-starter)
+The following example project is a fork of the angular1-webpack-starter with the addition of angular1-materialize: [InfomediaLtd/angular1-webpack-starter](https://github.com/InfomediaLtd/angular1-webpack-starter)
 
-#### Installing and configuring angular2-materialize with jspm
+#### Installing and configuring angular1-materialize with jspm
 
-Install MaterializeCSS and angular2-materialize:
+Install MaterializeCSS and angular1-materialize:
 ```sh
 jspm install npm:materialize-css
-jspm install npm:angular2-materialize
+jspm install npm:angular1-materialize
 ```
 
 Add the Google MD fonts to your index.html:
@@ -218,17 +217,17 @@ System.config({
     },
     map: {
         "materialize-css": "node-modules/materialize-css",
-        "angular2-materialize": "node_modules/angular2-materialize"
+        "angular1-materialize": "node_modules/angular1-materialize"
     }
 });
 ```
 
-#### Installing & configuring angular2-materialize in projects created with angular-cli
+#### Installing & configuring angular1-materialize in projects created with angular-cli
 
-Install MaterializeCSS and angular2-materialize from npm
+Install MaterializeCSS and angular1-materialize from npm
 ```
 npm install materialize-css --save
-npm install angular2-materialize --save
+npm install angular1-materialize --save
 ```
 
 Jquery is required
@@ -239,11 +238,11 @@ npm install jquery@^2.2.4 --save
 add vendor in angular-cli-build.js
 ```
 module.exports = function(defaults) {
-  return new Angular2App(defaults, {
+  return new Angular1App(defaults, {
     vendorNpmFiles: [
       //other vendors
       'jquery/dist/*',
-      'angular2-materialize/dist/*',
+      'angular1-materialize/dist/*',
       'materialize-css/dist/**/*'
     ]
   });
@@ -255,7 +254,7 @@ Add mapping and packages in system-config.ts
 /** Map relative paths to URLs. */
 const map: any = {
    "materialize-css": "vendor/materialize-css",
-   "angular2-materialize": "vendor/angular2-materialize",
+   "angular1-materialize": "vendor/angular1-materialize",
    "jquery": "vendor/jquery"
 };
 
@@ -266,16 +265,16 @@ const packages: any = {
     "main": "dist/js/materialize",
     "defaultExtension": "js"
   },
-  'angular2-materialize': {
+  'angular1-materialize': {
     "main": "dist/index",
     "defaultExtension": "js"
   }
 };
 ```
 
-Import angular2-materialize in main.ts
+Import angular1-materialize in main.ts
 ```
-import "angular2-materialize";
+import "angular1-materialize";
 ```
 
 Add these lines to header of index.html
@@ -284,12 +283,12 @@ Add these lines to header of index.html
 <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
-#### Installing & configuring angular2-materialize in projects created with angular-cli@webpack (1.0.0-beta.11-webpack.8)
+#### Installing & configuring angular1-materialize in projects created with angular-cli@webpack (1.0.0-beta.11-webpack.8)
 
-Install MaterializeCSS and angular2-materialize from npm
+Install MaterializeCSS and angular1-materialize from npm
 ```
 npm install materialize-css --save
-npm install angular2-materialize --save
+npm install angular1-materialize --save
 ```
 
 Jquery is required
@@ -312,7 +311,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { MaterializeModule } from 'angular2-materialize';
+import { MaterializeModule } from 'angular1-materialize';
 import { AppComponent } from './app.component';
 
 @NgModule({
