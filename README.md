@@ -115,9 +115,9 @@ The example below shows how you'd create a modal dialog and use the actions to o
   }
 ```
 
-For dynamic select elements apply the **materializeSelectOptions** directive to trigger element updates when the options list changes:
+For dynamic select elements apply the **materialize-select-options** directive to trigger element updates when the options list changes:
 ```html
-<select materialize="material_select" [materializeSelectOptions]="selectOptions">
+<select materialize="material_select" [materialize-select-options]="selectOptions">
   <option *ngFor="let option of selectOptions" [value]="option.value">{{option.name}}</option>
 </select>
 ```

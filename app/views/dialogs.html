@@ -1,50 +1,30 @@
-      <!-- Modal Trigger -->
-      <a class="waves-effect waves-light btn modal-trigger" ng-click="openModal()">Modal</a>
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" ng-click="openModal()">Modal</a>
 
-      <!-- Modal Structure -->
-      <div id="modal1" class="modal bottom-sheet" materialize="modal" materializeparams="[{dismissible: false}]" [materializeActions]="modalActions">
-        <div class="modal-content">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-          <a class="waves-effect waves-green btn-flat" ng-click="closeModal()">Close</a>
-          <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-      </div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal bottom-sheet" 
+materialize="modal" materialize-params="[{dismissible: false}]" 
+materialize-init="modalInit(emit)">
 
-      <!-- data-position can be : bottom, top, left, or right -->
-      <!-- data-delay controls delay before tooltip shows (in milliseconds)-->
-      <a materialize="tooltip" ng-click="printSomething()" class="btn tooltipped" data-position="bottom" data-delay="10" data-tooltip="I am tooltip">Hover me!</a>
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" ng-click="closeModal()">Close</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
 
-      <br/><br/>
+<!-- data-position can be : bottom, top, left, or right -->
+<!-- data-delay controls delay before tooltip shows (in milliseconds)-->
+<a materialize="tooltip" ng-click="printSomething()" class="btn tooltipped" 
+data-position="bottom" data-delay="10" data-tooltip="I am tooltip">Hover me!</a>
 
-      <!-- toast -->
-      <a class="btn" onclick="Materialize.toast('I am a toast', 4000)">Toast 1!</a>
-      <a class="btn" ng-click="triggerToast()" materialize materializeparams="['I am also a toast',4000]" [materializeActions]="globalActions">Toast 2!</a>
+<br/><br/>
 
-
-<!-- 
-
-    `
-})
-export class Dialogs {
-  modalActions = new EventEmitter<string|MaterializeAction>();
-  globalActions = new EventEmitter<string|MaterializeAction>();
-  params = []
-  printSomething() {
-    console.log("tooltip button clicked!");
-  }
-  triggerToast() {
-    this.globalActions.emit('toast')
-  }
-  openModal() {
-    this.modalActions.emit({action:"modal",params:['open']});
-  }
-  closeModal() {
-    this.modalActions.emit({action:"modal",params:['close']});
-  }
-}
-
-
- -->
+<!-- toast -->
+<a class="btn" ng-click="Materialize.toast('I am a toast', 4000)">Toast 1!</a>
+<a class="btn" ng-click="triggerToast()" 
+materialize materialize-params="['I am also a toast',4000]" 
+materialize-init="globalInit(emit)">Toast 2!</a>

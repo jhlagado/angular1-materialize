@@ -5,10 +5,10 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -34,7 +34,7 @@
             </div>
         </nav>
         <div class="container">
-            <a  materialize="sideNav" materializeparams="[{draggable: true}]" 
+            <a  materialize="sideNav" materialize-params="[{draggable: true}]" 
             href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
                 <i class="material-icons">menu</i>
             </a>
@@ -45,11 +45,10 @@
                     <object id="front-page-logo" type="image/svg+xml" data="images/materialize.svg">Your browser does not support SVG</object>
                 </a>
             </li>
-            <li class="bold" ng-repeat="route in routes"><a ng-href="#{{route.url}}">{{route.name}}</a></li>
+            <li class="bold" ng-class="{active:isRouteActive(route)}" ng-repeat="route in routes"><a ng-href="#{{route.url}}" ng-bind="route.name"></a></li>
         </ul>
     </header>
     <main>
-        {{route.current.loadedTemplateUrl}}
         <div class="container">
             <div class="row">
                 <div class="col s12 m9 l10">

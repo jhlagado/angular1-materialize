@@ -1,8 +1,12 @@
 'use strict';
-angular.module('appApp').controller('MainCtrl', function($scope, $route) {
+angular.module('appApp').controller('MainCtrl', function($scope, $route, Materialize) {
     
-    $scope.route = $route;
+    $scope.Materialize = Materialize;
 
+    $scope.isRouteActive = function(route) {
+        var url = 'views' + route.url + '.html';
+        return $route.current && $route.current.loadedTemplateUrl == url;
+    }
     $scope.routes = [{
         url: '/buttons',
         name: 'Buttons'
@@ -26,11 +30,12 @@ angular.module('appApp').controller('MainCtrl', function($scope, $route) {
         name: 'Tabs'
     }, {
         url: '/datepicker',
-        name: 'DatePicker'
-    }, {
-        url: '/nodelbindings',
-        name: 'ModelBindings'
-    }];
+        name: 'Date Picker'
+    }, //     {
+    //         url: '/modelbindings',
+    //         name: 'Model Bindings'
+    //     }
+    ];
     $scope.chipsInit = {
         data: [{
             tag: 'Apple',
@@ -44,6 +49,7 @@ angular.module('appApp').controller('MainCtrl', function($scope, $route) {
         placeholder: '+Tag',
         secondaryPlaceholder: 'Enter a tag',
     };
+    //forms
     $scope.firstName = "";
     $scope.selectedOption = "";
     $scope.selectOptions = [{
@@ -56,4 +62,31 @@ angular.module('appApp').controller('MainCtrl', function($scope, $route) {
         value: 3,
         name: "Option 3"
     }]
+    //dialogs
+
+    var modalEmit, globalEmit;
+    $scope.modalInit = function(emit) {
+        modalEmit = emit;
+    }
+    $scope.globalInit = function(emit) {
+        globalEmit = emit;
+    }
+    $scope.printSomething = function() {
+        console.log("tooltip button clicked!");
+    }
+    $scope.triggerToast = function() {
+        globalEmit('toast')
+    }
+    $scope.openModal = function() {
+        modalEmit({
+            action: "modal",
+            params: ['open']
+        });
+    }
+    $scope.closeModal = function() {
+        modalEmit({
+            action: "modal",
+            params: ['close']
+        });
+    }
 });

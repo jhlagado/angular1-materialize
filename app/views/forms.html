@@ -11,7 +11,7 @@
   </div>
   <div class="row">
     <div class="input-field col s12">
-      <input type="text" name="autoComplete" materialize="autocomplete" materializeparams="[{'data': {'apple': null, 'google': null}}]">
+      <input type="text" name="autoComplete" materialize="autocomplete" materialize-params="[{'data': {'apple': null, 'google': null}}]">
       <label for="autoComplete">Autocomplete (a/g)</label>
     </div>
   </div>
@@ -56,16 +56,16 @@
   </div>
   <div class="row">
     <div class="input-field col s6">
-      <select ng-model="selectedOption" name="selectedOption" materialize="material_select" [materializeSelectOptions]="selectOptions">
+      <select ng-model="selectedOption" name="selectedOption" materialize="material_select" materialize-select-options="selectOptions">
         <option value="" disabled selected>Choose your option</option>
-        <option *ngFor="let option of selectOptions" [value]="option.value">{{option.name}}</option>
+        <option ng-repeat="option in selectOptions" value="{{option.value}}">{{option.name}}</option>
       </select>
       <label>Materialize Select</label>
     </div>
     <div class="input-field col s6">
-      <select multiple materialize="material_select" [materializeSelectOptions]="selectOptions">
+      <select multiple materialize="material_select" materialize-select-options="selectOptions">
         <option value="" disabled selected>Choose your option</option>
-        <option *ngFor="let option of selectOptions" [value]="option.value">{{option.name}}</option>
+        <option ng-repeat="option in selectOptions" value="{{option.value}}">{{option.name}}</option>
       </select>
       <label>Materialize Multi Select</label>
     </div>

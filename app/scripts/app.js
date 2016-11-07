@@ -34,9 +34,6 @@ angular.module('appApp', ['ngAnimate', 'ngCookies', 'ngResource', 'ngRoute', 'ng
     }).when('/datepicker', {
         templateUrl: 'views/datepicker.html',
         controller: 'Generic',
-    }).when('/modelbindings', {
-        templateUrl: 'views/modelbindings.html',
-        controller: 'Generic',
     }).otherwise({
         redirectTo: '/buttons'
     });

@@ -1,11 +1,15 @@
 'use strict';
-angular.module('angular1-materialize', []).directive('materialize', function() {
+angular.module('angular1-materialize', [])
+.factory('Materialize', function() {
+        return Materialize;
+})
+.directive('materialize', function() {
     return {
         scope: {
             functionName: '@materialize',
-            params: '=materializeparams',
-            selectOptions: '=materializeselectoptions',
-            init: '&materializeinit',
+            params: '=materializeParams',
+            selectOptions: '=materializeSelectOptions',
+            init: '&materializeInit',
         },
         restrict: 'A',
         link: link,
@@ -24,31 +28,14 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
             performElementRemotion();
         });
         scope.init({
-            emitAction: actionFunc
+            emit: function(action) {
+                if (typeof action == "string") {
+                    performLocalElementUpdates(action);
+                } else {
+                    performLocalElementUpdates(action.action, action.params);
+                }
+            }
         })
-        function actionFunc(action) {
-            if (typeof action == "string") {
-                performLocalElementUpdates(action);
-            } else {
-                performLocalElementUpdates(action.action, action.params);
-            }
-        }
-        /*        
-        function ngDoCheck() {
-            var jQueryElement = $(element);
-            if (isSelect() && !jQueryElement.attr("multiple") && element.value != previousValue) {
-                // handle select changes of the model
-                previousValue = element.value;
-                performLocalElementUpdates();
-            }
-            return false;
-        }
-        function ngOnChanges() {
-            if (isSelect()) {
-                setTimeout(function(){performLocalElementUpdates()}, 10);
-            }
-        }
-*/
         function performElementRemotion() {
             if (isTooltip()) {
                 var jQueryElement = $(element);
@@ -97,12 +84,11 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
                             datePickerPopUp.removeClass('picker--focused picker--opened');
                         }
                     });
-                    jQueryElement.change(function(){
+                    jQueryElement.change(function() {
                         setTimeout(function() {
                             enablebtns()
                         }, 10);
-                    }
-                    );
+                    });
                     $('.picker__select--year').on('change', function() {
                         setTimeout(function() {
                             enablebtns();
@@ -122,7 +108,7 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
                 return;
             }
             _waitFunction[functionName] = true;
-            $(document).ready(function(){
+            $(document).ready(function() {
                 _waitFunction[functionName] = false;
                 if (functionName) {
                     var jQueryElement = $(element);
@@ -153,8 +139,7 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
                         }
                     }
                 }
-            }
-            );
+            });
         }
         function isTooltip() {
             return ( scope.functionName === "tooltip") ;
@@ -177,3 +162,19 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
         }
     }
 });
+/*        
+        function ngDoCheck() {
+            var jQueryElement = $(element);
+            if (isSelect() && !jQueryElement.attr("multiple") && element.value != previousValue) {
+                // handle select changes of the model
+                previousValue = element.value;
+                performLocalElementUpdates();
+            }
+            return false;
+        }
+        function ngOnChanges() {
+            if (isSelect()) {
+                setTimeout(function(){performLocalElementUpdates()}, 10);
+            }
+        }
+*/
