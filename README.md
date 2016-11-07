@@ -12,6 +12,7 @@ It is needed to add the dynamic behavior of Materialize CSS that is using JavaSc
 To run the demo you need to have node.js and npm installed on your local machine
 you also need to install grunt and bower globally
 
+```bash
 npm install grunt -g
 npm install bower -g
 
@@ -19,6 +20,7 @@ cd angular1-materialize
 npm install
 bower install
 grunt serve
+```
 
 Then point your browser at http://localhost:9000/
 
