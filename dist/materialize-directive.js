@@ -53,7 +53,7 @@ angular.module('angular1-materialize', [])
             // handle select changes from the HTML
             if (isSelect() && changeListenerShouldBeAdded) {
                 var jQueryElement = $(element);
-                jQueryElement.on("change", e=>{
+                jQueryElement.on("change", function(e){
                     if (!e.originalEvent || !e.originalEvent.internalToMaterialize) {
                         var event = document.createEvent("CustomEvent");
                         event.initCustomEvent("change", false, false, undefined);
@@ -66,14 +66,14 @@ angular.module('angular1-materialize', [])
             }
             if (isAutocomplete()) {
                 var jQueryElement = $(element);
-                jQueryElement.on("change", e=>element.dispatchEvent(new CustomEvent("input")));
+                jQueryElement.on("change", function(e){element.dispatchEvent(new CustomEvent("input"))});
             }
             if (isDatePicker()) {
                 var jQueryElement = $(element);
                 var enablebtns = enableDPButtons;
                 var params = scope.params || [];
                 jQueryElement[scope.functionName].apply(jQueryElement, params);
-                jQueryElement.on("change", e=>element.dispatchEvent(new CustomEvent("input")));
+                jQueryElement.on("change", function(e){element.dispatchEvent(new CustomEvent("input"))});
                 var datePickerPopUp = jQueryElement.siblings(".picker").first();
                 jQueryElement.on('click', function() {
                     datePickerPopUp.addClass('picker--focused picker--opened');
@@ -103,8 +103,14 @@ angular.module('angular1-materialize', [])
             }
             performLocalElementUpdates();
         }
-        function performLocalElementUpdates(functionName=scope.functionName, params=scope.params) {
-            if (_waitFunction[functionName]) {
+        function performLocalElementUpdates(functionName, params) {
+            if (!functionName) {
+				functionName=scope.functionName
+			}
+            if (!params) {
+				params=scope.params
+			}
+			if (_waitFunction[functionName]) {
                 return;
             }
             _waitFunction[functionName] = true;
