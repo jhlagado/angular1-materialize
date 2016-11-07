@@ -82,7 +82,7 @@ For example, to apply tooltip:
 <a materialize="tooltip" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">Hover me!</a>
 ```
 
-The [Materialize](https://github.com/InfomediaLtd/angular1-materialize/blob/master/src/materialize.ts) attribute directive also allows specifying parameters to be passed to the function, but providing a **materializeParams** attribute returning an array of params. Use it with a function call or even by inlining the params in the HTML.
+The [Materialize](https://github.com/InfomediaLtd/angular1-materialize/blob/master/src/materialize.ts) attribute directive also allows specifying parameters to be passed to the function, but providing a **materializeparams** attribute returning an array of params. Use it with a function call or even by inlining the params in the HTML.
 
 Another useful option is emitting actions on an element. You may want to do that for calling Materialize functions, like closing a modal dialog or triggering a toast. You can do that by setting the **materializeActions** attribute, which accepts an [EventEmitter](https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html). The emitted events can either be a "string" type action (Materialize function call) or a structure with action and parameters:
 
@@ -92,7 +92,7 @@ The example below shows how you'd create a modal dialog and use the actions to o
 <a class="waves-effect waves-light btn modal-trigger" (click)="openModal()">Modal</a>
 
 <!-- Modal Structure -->
-<div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+<div id="modal1" class="modal bottom-sheet" materialize="modal" materializeparams="[{dismissible: false}]" [materializeActions]="modalActions">
   <div class="modal-content">
     <h4>Modal Header</h4>
     <p>A bunch of text</p>
