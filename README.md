@@ -29,12 +29,6 @@ directive for binding it to any component that needs a dynamic behavior, like co
 
 #### Using angular1-materialize
 
-Import both materialize-css and angular1-materialize once per project, for example in your main.ts:
-```js
-import "materialize-css";
-import "angular1-materialize";
-```
-
 Add the Google MD fonts to your index.html:
 ```html
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
