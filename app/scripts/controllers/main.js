@@ -1,5 +1,8 @@
 'use strict';
-angular.module('appApp').controller('MainCtrl', function($scope) {
+angular.module('appApp').controller('MainCtrl', function($scope, $route) {
+    
+    $scope.route = $route;
+
     $scope.routes = [{
         url: '/buttons',
         name: 'Buttons'
@@ -41,4 +44,16 @@ angular.module('appApp').controller('MainCtrl', function($scope) {
         placeholder: '+Tag',
         secondaryPlaceholder: 'Enter a tag',
     };
+    $scope.firstName = "";
+    $scope.selectedOption = "";
+    $scope.selectOptions = [{
+        value: 1,
+        name: "Option 1"
+    }, {
+        value: 2,
+        name: "Option 2"
+    }, {
+        value: 3,
+        name: "Option 3"
+    }]
 });

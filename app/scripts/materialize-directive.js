@@ -4,9 +4,8 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
         scope: {
             functionName: '@materialize',
             params: '=materializeparams',
-            selectOptions: '=materializeSelectOptions',
-            materializeInit: '&materializeInit',
-            materializeInit: '&',
+            selectOptions: '=materializeselectoptions',
+            init: '&materializeinit',
         },
         restrict: 'A',
         link: link,
@@ -24,7 +23,7 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
         scope.$on('$destroy', function() {
             performElementRemotion();
         });
-        scope.materializeInit({
+        scope.init({
             emitAction: actionFunc
         })
         function actionFunc(action) {
@@ -46,7 +45,7 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
         }
         function ngOnChanges() {
             if (isSelect()) {
-                setTimeout(()=>performLocalElementUpdates(), 10);
+                setTimeout(function(){performLocalElementUpdates()}, 10);
             }
         }
 */
@@ -85,7 +84,8 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
             if (isDatePicker()) {
                 var jQueryElement = $(element);
                 var enablebtns = enableDPButtons;
-                jQueryElement[scope.functionName](...scope.params);
+                var params = scope.params || [];
+                jQueryElement[scope.functionName].apply(jQueryElement, params);
                 jQueryElement.on("change", e=>element.dispatchEvent(new CustomEvent("input")));
                 var datePickerPopUp = jQueryElement.siblings(".picker").first();
                 jQueryElement.on('click', function() {
@@ -97,7 +97,7 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
                             datePickerPopUp.removeClass('picker--focused picker--opened');
                         }
                     });
-                    jQueryElement.change(()=>{
+                    jQueryElement.change(function(){
                         setTimeout(function() {
                             enablebtns()
                         }, 10);
@@ -122,14 +122,14 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
                 return;
             }
             _waitFunction[functionName] = true;
-            $(document).ready(()=>{
+            $(document).ready(function(){
                 _waitFunction[functionName] = false;
                 if (functionName) {
                     var jQueryElement = $(element);
                     if (jQueryElement[functionName]) {
                         if (params) {
                             if (params instanceof Array) {
-                                jQueryElement[functionName](...params);
+                                jQueryElement[functionName].apply(jQueryElement, params);
                             } else {
                                 throw new Error("Params has to be an array.");
                             }
@@ -141,7 +141,7 @@ angular.module('angular1-materialize', []).directive('materialize', function() {
                         if (Materialize[functionName]) {
                             if (params) {
                                 if (params instanceof Array) {
-                                    Materialize[functionName](...params);
+                                    Materialize[functionName].apply(jQueryElement, params);
                                 } else {
                                     throw new Error("Params has to be an array.");
                                 }
