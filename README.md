@@ -9,23 +9,13 @@ This library provides Angular 1 support for Materialize CSS framework [https://g
 This library adds support for the Materialize CSS framework in Angular 1. 
 It is needed to add the dynamic behavior of Materialize CSS that is using JavaScript rather than plain CSS.
 
-To run the demo you need to have node.js and npm installed on your local machine
-you also need to install grunt and bower globally
+You can find a working demo using the directive here
+https://github.com/jhlagado/angular1-materialize-demo
 
-```bash
-npm install grunt -g
-npm install bower -g
-
-cd angular1-materialize
-npm install
-bower install
-grunt serve
-```
-
-Then point your browser at http://localhost:9000/
-
-To use the library you need to import it into your project and then use its MaterializeDirective 
-directive for binding it to any component that needs a dynamic behavior, like collapsible panels, tooltips, etc.
+To use the directive you need to import it into your project and then use 
+its MaterializeDirective 
+directive for binding it to any component that needs a dynamic behavior, 
+like collapsible panels, tooltips, etc.
 
 #### Using angular1-materialize
 
