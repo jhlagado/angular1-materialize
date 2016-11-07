@@ -1,6 +1,6 @@
 {
   "name": "angular1-materialize",
-  "version": "1.0.0",
+  "version": "6.0.1",
   "description": "Simple integration for using Materialize CSS with Angular 1",
   "main": "dist/materialize-directive.min.js",
   "scripts": {
