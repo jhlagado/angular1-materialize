@@ -28,9 +28,9 @@ angular.module('angular1-materialize', [])
             performElementRemotion();
         });
         scope.init({
-            emit: function(action) {
+            emit: function(action, params) {
                 if (typeof action == "string") {
-                    performLocalElementUpdates(action);
+                    performLocalElementUpdates(action, params);
                 } else {
                     performLocalElementUpdates(action.action, action.params);
                 }
@@ -168,19 +168,3 @@ angular.module('angular1-materialize', [])
         }
     }
 });
-/*        
-        function ngDoCheck() {
-            var jQueryElement = $(element);
-            if (isSelect() && !jQueryElement.attr("multiple") && element.value != previousValue) {
-                // handle select changes of the model
-                previousValue = element.value;
-                performLocalElementUpdates();
-            }
-            return false;
-        }
-        function ngOnChanges() {
-            if (isSelect()) {
-                setTimeout(function(){performLocalElementUpdates()}, 10);
-            }
-        }
-*/
